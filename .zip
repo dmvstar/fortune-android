@@ -1,0 +1,21 @@
+#/bin/sh
+
+PWD=`pwd`
+FFF=`basename $PWD`
+DDD=`date '+%d%m%y'`
+REV=1
+
+while true
+do
+  ARC="$FFF-$DDD-$REV.7z"
+  echo $ARC
+  [ -f ../$ARC ] || { break; }
+  REV=`expr $REV + 1`
+done
+  
+cd ..
+
+echo 7z a -r $ARC $FFF/*
+7z a -r $ARC $FFF/* $FFF/.*
+
+
