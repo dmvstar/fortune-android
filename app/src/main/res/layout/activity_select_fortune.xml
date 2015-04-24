@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_trans_50"  >
+
+    <TextView android:id="@+id/output"
+        android:background="#758AA7"
+        android:layout_height="wrap_content"
+        android:padding="1px"
+        android:textColor="#ffffff"
+        android:text="@string/config_select_fortune"
+        android:layout_width="fill_parent" />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+    </ListView>
+
+
+</LinearLayout>

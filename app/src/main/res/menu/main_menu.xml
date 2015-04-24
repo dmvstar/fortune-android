@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/main_menu_fortune_show"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_fortune_show"/>
+
+    <item
+        android:id="@+id/main_menu_select_fortune"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_select_fortune"/>
+
+    <item
+        android:id="@+id/main_menu_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings"/>
+
+    <item
+        android:id="@+id/main_menu_exit"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_exit"/>
+
+    <item
+        android:id="@+id/main_menu_about"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_about"/>
+
+
+</menu>

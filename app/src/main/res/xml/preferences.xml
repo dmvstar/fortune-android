@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="@string/pref_maintext_size"
+        android:title="@string/pref_maintext_size_title"
+        android:summary="@string/pref_maintext_size_summary"
+        android:inputType="number"
+        android:defaultValue="@string/pref_maintext_size_defaukt"
+        android:dialogTitle="@string/pref_maintext_size_dialog_title" />
+
+    <ListPreference
+        android:key="@string/pref_maintext_style"
+        android:title="@string/pref_maintext_style_title"
+        android:summary="@string/pref_maintext_style_summary"
+        android:defaultValue="@string/pref_maintext_style_default"
+        android:entries="@array/text_style"
+        android:entryValues="@array/text_style_int"
+        android:dialogTitle="@string/pref_maintext_style_dialog_title" />
+
+
+    <EditTextPreference
+        android:key="@string/pref_slideshow_delay"
+        android:title="@string/pref_slideshow_delay_title"
+        android:summary="@string/pref_slideshow_delay_summary"
+        android:inputType="number"
+        android:defaultValue="@string/pref_slideshow_delay_default"
+        android:dialogTitle="@string/pref_slideshow_delay_dialog_title" />
+
+
+</PreferenceScreen>

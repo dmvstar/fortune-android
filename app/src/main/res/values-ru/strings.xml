@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Фортуна</string>
+    <string name="action_about">Про ...</string>
+    <string name="action_exit">Выход</string>
+    <string name="action_select_fortune">Выбор фортуны</string>
+    <string name="action_settings">Настройки</string>
+    <string name="button_next">Следующая</string>
+    <string name="config_select_fortune">Выбор фортуны:</string>
+    <string name="dummy_button">Енопка</string>
+    <string name="dummy_content">Сначала\nВыберите файл Фортуны</string>
+    <string name="dialog_message_load_fortune">Загрузка файлика фортуны ...</string>
+    <string name="dialog_message_load_title">Не тормози ...</string>
+
+    <string name="pref_maintext_size_title">Размер шрифта</string>
+    <string name="pref_maintext_size_summary">Устанавливает новый размер шрифта</string>
+    <string name="pref_maintext_size_dialog_title">Введите размер шрифта (от 10 до 40)</string>
+
+    <string name="pref_maintext_style_title">Стиль для шрифта</string>
+    <string name="pref_maintext_style_summary">Устанавливает стиль для шрифта</string>
+    <string name="pref_maintext_style_dialog_title">Выберите стиль для шрифта</string>
+    <string name="hint_of_day">Hint of day ...</string>
+    <string name="about_title">About</string>
+    <string name="version_info">Вер.:</string>
+    <string name="about_info">Fortune — программа для юникс-совместимых операционных систем, выдающая некоторую цитату, афоризм или шутку, случайным образом взяв его/её из текстовых файлов, содержащих коллекции подобных фраз.</string>
+    <string name="about_author_info">Author</string>
+    <string name="about_author_name">dmvstar</string>
+    <string name="donate_info">Пожертвовать ... дайте мне деньги, пожалуйста ...</string>
+    <string name="action_fortune_show">Старт/Стоп показа</string>
+    <string name="pref_slideshow_delay_title">Время задержки показа</string>
+    <string name="pref_slideshow_delay_summary">Время задержки показа в миллисекундах</string>
+    <string name="pref_slideshow_delay_dialog_title">Введите время задержки (мс)</string>
+    <string name="meaage_start_show">Начало показа ...</string>
+    <string name="meaage_stop_show">Завершение показа ...</string>
+
+</resources>

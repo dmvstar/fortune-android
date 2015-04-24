@@ -1,0 +1,64 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+
+        <item name="android:textAppearance">@color/DarkYellow</item>
+        <item name="android:textAppearanceListItemSmall">@style/TextMedium</item>
+
+<!--
+
+        <item name="android:textAppearanceLarge">@style/TextMedium</item>
+        <item name="android:textAppearanceMedium">@style/TextMedium</item>
+        <item name="android:textAppearanceSmall">@style/TextMedium</item>
+-->
+
+    </style>
+
+    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">@style/ButtonBar</item>
+        <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
+
+        <item name="android:colorPressedHighlight">@color/DarkYellow</item>
+        <item name="android:colorLongPressedHighlight">@color/DarkYellow</item>
+        <item name="android:colorFocusedHighlight">@color/DarkYellow</item>
+        <item name="android:colorActivatedHighlight">@color/DarkYellow</item>
+        <item name="android:activatedBackgroundIndicator">@color/DarkYellow</item>
+        <item name="android:listViewStyle">@style/ListFont</item>
+
+    </style>
+
+    <style name="TextMedium" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/Yellow</item>
+    </style>
+
+
+    <style name="ListFont" parent="@android:style/Widget.ListView">
+        <item name="android:textColor">#FF0000</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <!-- Backward-compatible version of ?android:attr/buttonBarStyle -->
+    <style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style>
+
+    <!-- Backward-compatible version of ?android:attr/buttonBarButtonStyle -->
+    <style name="ButtonBarButton" />
+
+
+    <style name="PreferenceTheme">
+        <item name="android:textColor">@color/DarkYellow</item>
+        <item name="android:textColorSecondary">@color/Yellow</item>
+        <!-- delete this line if you want transparent background -->
+        <!-- <item name="android:background">@drawable/shape_trans_50</item> -->
+    </style>
+
+</resources>
