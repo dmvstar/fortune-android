@@ -93,11 +93,31 @@
                 android:id="@+id/lbAuthorName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autoLink="email"
                 android:paddingLeft="20dp"
                 android:text="@string/about_author_name"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@android:color/holo_blue_bright" />
+
+
+            <TextView
+                android:id="@+id/lbAuthorNikName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="@string/about_author_niknmae"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/holo_blue_bright" />
+
+            <TextView
+                android:id="@+id/lbAuthorEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="email"
+                android:paddingLeft="20dp"
+                android:text="@string/about_author_email"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/holo_blue_bright" />
+
 
         </LinearLayout>
 

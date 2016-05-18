@@ -31,10 +31,12 @@
     <string name="hint_of_day">Hint of day ...</string>
     <string name="about_title">About</string>
     <string name="version_info">Ver. :</string>
-    <string name="version_num" translatable="false">1.0.2</string>
+    <string name="version_num" translatable="false">1.0.15</string>
     <string name="about_info">Fortune is a simple program that displays a pseudorandom message from a database of quotations that first appeared in Version 7 Unix.</string>
     <string name="about_author_info">Author</string>
-    <string name="about_author_name">dmvstar</string>
+    <string name="about_author_name">Dmitry Starzenski</string>
+    <string name="about_author_niknmae">StarDust</string>
+    <string name="about_author_email">dmvstar@gmail.com</string>
 
     <string name="donate_info">Donate ... give me the money please ...</string>
     <string name="pref_slideshow_delay" translatable="false">pref_slideshow_delay</string>
