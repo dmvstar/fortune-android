@@ -22,6 +22,7 @@
         <activity android:name=".actv.SelectFortuneActivity" />
         <activity android:name=".actv.ConfigActivity" />
         <activity android:name=".actv.AboutActivity" />
+        <activity android:name=".actv.IntroActivity" />
 
 
 

@@ -2,19 +2,31 @@ package net.sf.dvstar.fortune.actv;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import net.sf.dvstar.fortune.R;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by dstarzhynskyi on 17.04.2015.
  */
-public class AboutActivity  extends Activity {
+public class AboutActivity  extends Activity implements View.OnClickListener {
+    private TextView mTvAuthorName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        mTvAuthorName = (TextView) findViewById(R.id.lbAuthorName);
+        mTvAuthorName.setOnClickListener(this);
+
     }
 
 
@@ -27,5 +39,14 @@ public class AboutActivity  extends Activity {
         dlgAlert.create().show();    }
 
 
+    @Override
+    public void onClick(View v) {
+        showIntroActivity();
+    }
 
+    private void showIntroActivity() {
+
+        Intent intent = new Intent(this, IntroActivity.class );
+        this.startActivity(intent);
+    }
 }
