@@ -1,4 +1,4 @@
-TITLE=Linu cookies part 1,FORMAT=%
+TITLE=Linux cookies part 1,FORMAT=%
 'How do you pronounce SunOS?'  'Just like you hear it, with a big SOS'
 	-- dedicated to Roland Kaltefleiter
 %

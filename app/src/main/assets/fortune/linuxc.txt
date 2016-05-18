@@ -1,4 +1,4 @@
-TITLE=Linu cookies part 2,FORMAT=%
+TITLE=Linux cookies part 2,FORMAT=%
 A Linu machine! because a 486 is a terrible thing to waste!
 (By jjs@wintermute.ucr.edu, Joe Sloan)
 %
