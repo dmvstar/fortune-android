@@ -15,7 +15,7 @@
     <string name="dialog_message_load_title">Please wait</string>
 
     <string name="pref_maintext_size" translatable="false">pref_text_size</string>
-    <string name="pref_maintext_size_defaukt" translatable="false">30</string>
+    <string name="pref_maintext_size_defaukt" translatable="false">24</string>
     <string name="pref_maintext_size_title">Font size</string>
     <string name="pref_maintext_size_summary">Set the new Font size</string>
     <string name="pref_maintext_size_dialog_title">Enter font size (from 10 to 40)</string>
@@ -42,7 +42,7 @@
     <string name="pref_slideshow_delay" translatable="false">pref_slideshow_delay</string>
     <string name="pref_slideshow_delay_title">Sleep time foor show</string>
     <string name="pref_slideshow_delay_summary">Sleep time foor show</string>
-    <string name="pref_slideshow_delay_default" translatable="false">3000</string>
+    <string name="pref_slideshow_delay_default" translatable="false">5000</string>
     <string name="pref_slideshow_delay_dialog_title">Input delay time (ms)</string>
     <string name="meaage_start_show">Slide show is begin ...</string>
     <string name="meaage_stop_show">Slide show is finish ...</string>

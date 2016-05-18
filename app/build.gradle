@@ -12,6 +12,18 @@ android {
         versionName "1.0"
     }
     buildTypes {
+
+	applicationVariants.all { variant ->                              
+
+            	def manifestParser = new com.android.builder.core.DefaultManifestParser()
+		println manifestParser.getVersionName(android.sourceSets.main.manifest.srcFile)
+
+        	variant.outputs.each { output ->                              
+            		output.outputFile = file("$project.buildDir/outputs/apk/fortune-android-1.0.15.apk")
+		}                                                             
+	}
+	
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

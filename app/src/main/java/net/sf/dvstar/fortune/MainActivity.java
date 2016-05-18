@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.sf.dvstar.fortune.actv.AboutActivity;
+import net.sf.dvstar.fortune.actv.OnSwipeTouchListener;
 import net.sf.dvstar.fortune.actv.ConfigActivity;
 import net.sf.dvstar.fortune.actv.SelectFortuneActivity;
 import net.sf.dvstar.fortune.data.FortuneDBHelper;
@@ -182,6 +183,20 @@ public class MainActivity extends Activity {
         setContentFontParams();
         mHandlerFortuneShow = new Handler();
         mHandlerFortuneDelay = new Handler();
+
+
+        mTvContent.setOnTouchListener(
+                new OnSwipeTouchListener(this) {
+                    public void onSwipeRight() {
+                        Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                        fillFortuneContent();
+                    }
+                    public void onSwipeLeft() {
+                        Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                        fillFortuneContent();
+                    }
+                });
+
         Log.d(TAG, "onCreate End");
     }
 
