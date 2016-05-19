@@ -13,8 +13,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp">
 
@@ -33,8 +33,8 @@
                 android:text="@string/about_title"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/holo_orange_light"
-                android:textStyle="bold"
-                android:textSize="32dp"
+                android:textStyle="bold|italic"
+                android:textSize="32sp"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
@@ -75,50 +75,63 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/lbAuthorLabel"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/imageViewAuthor"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="4dp"
-                android:text="@string/about_author_info"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/holo_blue_bright" />
+                android:layout_marginLeft="10sp"
+                android:paddingLeft="4sp"
+                android:src="@drawable/author_96" />
 
-            <TextView
-                android:id="@+id/lbAuthorName"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="@string/about_author_name"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/holo_blue_bright" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="30sp">
+
+                <TextView
+                    android:id="@+id/lbAuthorLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="4dp"
+                    android:text="@string/about_author_info"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/holo_blue_bright" />
+
+                <TextView
+                    android:id="@+id/lbAuthorName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="@string/about_author_name"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/holo_orange_light" />
 
 
-            <TextView
-                android:id="@+id/lbAuthorNikName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="@string/about_author_niknmae"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/holo_blue_bright" />
+                <TextView
+                    android:id="@+id/lbAuthorNikName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="@string/about_author_niknmae"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/holo_blue_bright" />
 
-            <TextView
-                android:id="@+id/lbAuthorEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="email"
-                android:paddingLeft="20dp"
-                android:text="@string/about_author_email"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/holo_blue_bright" />
+                <TextView
+                    android:id="@+id/lbAuthorEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="email"
+                    android:paddingLeft="20dp"
+                    android:text="@string/about_author_email"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/holo_blue_bright" />
 
 
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -154,8 +167,8 @@
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/holo_blue_bright"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp" />
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" />
 
     </LinearLayout>
 
