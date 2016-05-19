@@ -14,12 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import net.sf.dvstar.fortune.actv.AboutActivity;
-import net.sf.dvstar.fortune.actv.OnSwipeTouchListener;
 import net.sf.dvstar.fortune.actv.ConfigActivity;
+import net.sf.dvstar.fortune.actv.OnSwipeTouchListener;
 import net.sf.dvstar.fortune.actv.SelectFortuneActivity;
 import net.sf.dvstar.fortune.data.FortuneDBHelper;
 import net.sf.dvstar.fortune.util.SystemUiHider;
@@ -34,7 +35,7 @@ import java.util.Random;
  *
  * @see SystemUiHider
  */
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -81,6 +82,7 @@ public class MainActivity extends Activity {
     private FortuneDBHelper mDbHelper;
     private SystemUiHider mSystemUiHider;
     private TextView mTvContent;
+    private ScrollView mTvContentScroll;
     private String TAG = "MainActivity";
     private TextView mTvStatus;
     private int mInterval = 5000; // 5 seconds by default, can be changed later
@@ -111,6 +113,7 @@ public class MainActivity extends Activity {
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View statusView = findViewById(R.id.fullscreen_content_status);
         final View contentView = findViewById(R.id.fullscreen_content);
+        mTvContentScroll = (ScrollView) findViewById(R.id.scrollView);
 
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
@@ -184,6 +187,7 @@ public class MainActivity extends Activity {
         mHandlerFortuneShow = new Handler();
         mHandlerFortuneDelay = new Handler();
 
+        mTvContent.setOnClickListener(this);
 
         mTvContent.setOnTouchListener(
                 new OnSwipeTouchListener(this) {
@@ -195,7 +199,19 @@ public class MainActivity extends Activity {
                         Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
                         fillFortuneContent();
                     }
-                });
+        });
+
+        mTvContentScroll.setOnTouchListener(
+                new OnSwipeTouchListener(this) {
+                    public void onSwipeRight() {
+                        Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                        fillFortuneContent();
+                    }
+                    public void onSwipeLeft() {
+                        Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                        fillFortuneContent();
+                    }
+        });
 
         Log.d(TAG, "onCreate End");
     }
@@ -421,8 +437,8 @@ public class MainActivity extends Activity {
     }
 
 
-
-
-
-
+    @Override
+    public void onClick(View v) {
+        fillFortuneContent();
+    }
 }
