@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.pkmmte.view.CircularImageView;
+
 import net.sf.dvstar.fortune.R;
 
 /**
@@ -23,6 +25,9 @@ public class AboutActivity  extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_about);
         mTvAuthorName = (TextView) findViewById(R.id.lbAuthorName);
         mIvAuthorTace = (ImageView) findViewById(R.id.imageViewAuthor);
+
+        CircularImageView circularImageView;
+
         mTvAuthorName.setOnClickListener(this);
         mIvAuthorTace.setOnClickListener(this);
     }
