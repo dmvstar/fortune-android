@@ -25,6 +25,7 @@ import net.sf.dvstar.fortune.actv.SelectFortuneActivity;
 import net.sf.dvstar.fortune.data.FortuneDBHelper;
 import net.sf.dvstar.fortune.util.SystemUiHider;
 import net.sf.dvstar.fortune.util.Utils;
+import net.sf.dvstar.fortune.view.ScrollingTextView;
 
 import java.util.Random;
 
@@ -114,6 +115,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         final View statusView = findViewById(R.id.fullscreen_content_status);
         final View contentView = findViewById(R.id.fullscreen_content);
         mTvContentScroll = (ScrollView) findViewById(R.id.scrollView);
+
+        if(mTvContent instanceof ScrollingTextView) {
+            ScrollingTextView mTvContentSV = (ScrollingTextView) mTvContent;
+            mTvContentSV.setSpeed( 30.0f );
+        }
 
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
@@ -418,6 +424,24 @@ public class MainActivity extends Activity implements View.OnClickListener {
             int id = getRandInt(1, count);
             String phrase = "("+id+")\n\n"+ mDbHelper.getPhraseById(id);
             mTvContent.setText(phrase);
+            mTvContentScroll.scrollTo(0, 0);
+
+            /*
+            if(mTvContent instanceof ScrollingTextView) {
+                ScrollingTextView mTvContentSV = (ScrollingTextView) mTvContent;
+                mTvContentSV.setStartHeight( mTvContentScroll.getHeight() );
+            } else {
+                mTvContentScroll.fullScroll(ScrollView.FOCUS_DOWN);
+                mTvContentScroll.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //replace this line to scroll up or down
+                        mTvContentScroll.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                }, 100L);
+            }
+            */
+
         }
     }
 
