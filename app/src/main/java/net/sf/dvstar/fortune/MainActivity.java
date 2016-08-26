@@ -533,8 +533,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     class ScrollRunner implements Runnable {
 
-        final long totalScrollTime = 200000;//Long.MAX_VALUE; //total scroll time. I think that 300 000 000 years is close enouth to infinity. if not enought you can restart timer in onFinish()
-        final int scrollPeriod = 25; // every 20 ms scoll will happened. smaller values for smoother
+        final long totalScrollTime = Long.MAX_VALUE; //total scroll time. I think that 300 000 000 years is close enouth to infinity. if not enought you can restart timer in onFinish()
+        final int scrollPeriod = 16; // every 20 ms scoll will happened. smaller values for smoother
         final int heightToScroll = 1;//mTvContent.getLineHeight();//20; // will be scrolled to 20 px every time. smaller values for smoother scrolling
 
         int lastScrollY = 0;
@@ -553,6 +553,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     //you can add code for restarting timer here
                 }
             }.start();
+            try {
+                Thread.sleep(120);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             Log.v(TAG, "-- "+mTvContentScroll.getRootView().getBottom() +" getHeight()="+mTvContentScroll.getHeight()+" "+mTvContentScroll.getPaddingBottom());
             if (lastScrollY == mTvContentScroll.getScrollY())
                 ;//mTvContentScroll.removeCallbacks(this);
@@ -561,4 +566,36 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
     }
+
+
+
 }
+
+
+
+
+/*
+
+final long totalScrollTime = Long.MAX_VALUE; //total scroll time. I think that 300 000 000 years is close enouth to infinity. if not enought you can restart timer in onFinish()
+
+final int scrollPeriod = 20; // every 20 ms scoll will happened. smaller values for smoother
+
+final int heightToScroll = 20; // will be scrolled to 20 px every time. smaller values for smoother scrolling
+
+listView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                                new CountDownTimer(totalScrollTime, scrollPeriod ) {
+                                    public void onTick(long millisUntilFinished) {
+                                        listView.scrollBy(0, heightToScroll);
+                                    }
+
+                                public void onFinish() {
+                                    //you can add code for restarting timer here
+                                }
+                            }.start();
+                        }
+                    });
+
+
+ */
