@@ -5,8 +5,10 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -17,6 +19,11 @@ import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import net.sf.dvstar.fortune.actv.AboutActivity;
 import net.sf.dvstar.fortune.actv.ConfigActivity;
@@ -89,9 +96,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private int mInterval = 5000; // 5 seconds by default, can be changed later
     private Handler mHandlerFortuneShow;
     private Handler mHandlerFortuneDelay;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     /**
      * Get random (pseudo) from diapason
+     *
      * @param min min value
      * @param max max value
      * @return result
@@ -116,9 +129,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         final View contentView = findViewById(R.id.fullscreen_content);
         mTvContentScroll = (ScrollView) findViewById(R.id.scrollView);
 
-        if(mTvContent instanceof ScrollingTextView) {
+        if (mTvContent instanceof ScrollingTextView) {
             ScrollingTextView mTvContentSV = (ScrollingTextView) mTvContent;
-            mTvContentSV.setSpeed( 30.0f );
+            mTvContentSV.setSpeed(30.0f);
         }
 
         // Set up an instance of SystemUiHider to control the system UI for
@@ -156,13 +169,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             controlsView.setVisibility(visible ? View.VISIBLE : View.GONE);
                         }
 
-                        Log.v(TAG, "Visible="+visible);
+                        Log.v(TAG, "Visible=" + visible);
                         if (visible && AUTO_HIDE) {
                             // Schedule a hide().
                             delayedHide(AUTO_HIDE_DELAY_MILLIS);
                         }
 
-                        if(visible)
+                        if (visible)
                             getActionBar().show();
                         else
                             getActionBar().hide();
@@ -173,7 +186,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         contentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v(TAG, "setOnClickListener="+TOGGLE_ON_CLICK);
+                Log.v(TAG, "setOnClickListener=" + TOGGLE_ON_CLICK);
                 if (TOGGLE_ON_CLICK) {
                     mSystemUiHider.toggle();
                 } else {
@@ -201,11 +214,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
                         fillFortuneContent();
                     }
+
                     public void onSwipeLeft() {
                         Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
                         fillFortuneContent();
                     }
-        });
+                });
 
         mTvContentScroll.setOnTouchListener(
                 new OnSwipeTouchListener(this) {
@@ -213,19 +227,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
                         fillFortuneContent();
                     }
+
                     public void onSwipeLeft() {
                         Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
                         fillFortuneContent();
                     }
-        });
+                });
 
         Log.d(TAG, "onCreate End");
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    private void setContentFontParams(){
-        if(mTvContent ==null) return;
+    private void setContentFontParams() {
+        if (mTvContent == null) return;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int tvContentFontSize = Integer.parseInt(preferences.getString(getResources().getString(R.string.pref_maintext_size),"30"));
+        int tvContentFontSize = Integer.parseInt(preferences.getString(getResources().getString(R.string.pref_maintext_size), "30"));
         mTvContent.setTextSize(tvContentFontSize);
         int tvContentFontStyle = getFontStyle(preferences.getString(getResources().getString(R.string.pref_maintext_style), "Normal"));
         mTvContent.setTypeface(null, tvContentFontStyle);
@@ -238,7 +256,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         } catch (Exception e) {
             ret = 0;
         }
-        Log.v(TAG, "getFontStyle("+style+")="+ret);
+        Log.v(TAG, "getFontStyle(" + style + ")=" + ret);
         return ret;
     }
 
@@ -307,20 +325,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
         return true;
     }
 
-   /**
+    /**
      * Start stop slide show
      */
     private void showFortune() {
         String message;
-        if(!mStartStopShow){
-            mStartStopShow = true ;
-            mTvStatus.setText(""+(mInterval/1000));
+        if (!mStartStopShow) {
+            mStartStopShow = true;
+            mTvStatus.setText("" + (mInterval / 1000));
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-            mInterval = Integer.parseInt(preferences.getString(getResources().getString(R.string.pref_slideshow_delay),"3000"));
+            mInterval = Integer.parseInt(preferences.getString(getResources().getString(R.string.pref_slideshow_delay), "3000"));
             startRepeatingTask();
             message = getResources().getString(R.string.meaage_start_show);
-        }
-        else {
+        } else {
             mStartStopShow = false;
             stopRepeatingTask();
             mTvStatus.setText("");
@@ -329,45 +346,45 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Toast.makeText(this,
                 message,
                 Toast.LENGTH_SHORT).show();
-        Log.v(TAG, "showFortune [" + mStartStopShow + "] "+message);
+        Log.v(TAG, "showFortune [" + mStartStopShow + "] " + message);
     }
 
     Runnable vStatusDelay = new Runnable() {
         @Override
         public void run() {
             fillFortuneContent();
-            mCheckerSteps = mInterval/1000;
+            mCheckerSteps = mInterval / 1000;
             startStatusTask();
-            Log.v(TAG,"vStatusDelay="+mCheckerSteps);
+            Log.v(TAG, "vStatusDelay=" + mCheckerSteps);
             mHandlerFortuneShow.postDelayed(vStatusDelay, mInterval);
         }
     };
 
     Runnable vStatusChecker = new Runnable() {
-                @Override
-                public void run() {
-                        //mHandlerFortuneDelay.postDelayed(this, 1000);
-                        //while(updateStatus()){
-                            if(updateStatus())
-                                mHandlerFortuneDelay.postDelayed(vStatusChecker, 1000);
-                            else
-                                mHandlerFortuneDelay.removeCallbacks(vStatusChecker);
-                        //}
-                        //this function can change value of mInterval.
-                    //mHandlerFortuneDelay.postDelayed(vStatusChecker, 1000);
-                }
+        @Override
+        public void run() {
+            //mHandlerFortuneDelay.postDelayed(this, 1000);
+            //while(updateStatus()){
+            if (updateStatus())
+                mHandlerFortuneDelay.postDelayed(vStatusChecker, 1000);
+            else
+                mHandlerFortuneDelay.removeCallbacks(vStatusChecker);
+            //}
+            //this function can change value of mInterval.
+            //mHandlerFortuneDelay.postDelayed(vStatusChecker, 1000);
+        }
     };
 
     private boolean updateStatus() {
         boolean ret = true;
 
-        if(mCheckerSteps>0){
-            mTvStatus.setText(""+mCheckerSteps);
+        if (mCheckerSteps > 0) {
+            mTvStatus.setText("" + mCheckerSteps);
             mCheckerSteps--;
         }
-        if(mCheckerSteps<=0) ret = false;
+        if (mCheckerSteps <= 0) ret = false;
 
-        Log.v(TAG,"mCheckerSteps ["+ret+"]="+mCheckerSteps);
+        Log.v(TAG, "mCheckerSteps [" + ret + "]=" + mCheckerSteps);
 
         return ret;
     }
@@ -379,9 +396,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     void startStatusTask() {
         vStatusChecker.run();
     }
+
     void stopStatusTask() {
         mHandlerFortuneDelay.removeCallbacks(vStatusChecker);
     }
+
     void stopRepeatingTask() {
         mHandlerFortuneShow.removeCallbacks(vStatusDelay);
         mHandlerFortuneDelay.removeCallbacks(vStatusChecker);
@@ -391,7 +410,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * Launch About screen
      */
     private void launchAbout() {
-        Intent intent = new Intent(this, AboutActivity.class );
+        Intent intent = new Intent(this, AboutActivity.class);
         this.startActivity(intent);
     }
 
@@ -400,7 +419,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     private void launchSettings() {
         // Display the fragment as the main content.
-        Intent intent = new Intent(this, ConfigActivity.class );
+        Intent intent = new Intent(this, ConfigActivity.class);
         this.startActivity(intent);
     }
 
@@ -408,7 +427,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * Launch Select screen
      */
     private void launchSelectFortune() {
-        Intent intent = new Intent(this, SelectFortuneActivity.class );
+        Intent intent = new Intent(this, SelectFortuneActivity.class);
         this.startActivity(intent);
     }
 
@@ -417,20 +436,28 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     private void fillFortuneContent() {
         String selection = Utils.loadCurrentSelection(this);
-        if(mTvContent !=null && selection.length()>0){
+        if (mTvContent != null && selection.length() > 0) {
             mTvContent.setText("");
             int count = mDbHelper.getCountRows(FortuneDBHelper.FORTUNE_TABLE_PHRASES);
-            Log.d(TAG, Utils.loadCurrentSelection(this)+" record count "+count);
+            Log.d(TAG, Utils.loadCurrentSelection(this) + " record count " + count);
             int id = getRandInt(1, count);
-            String phrase = "("+id+")\n\n"+ mDbHelper.getPhraseById(id);
+            String phrase = "(" + id + ")\n\n" + mDbHelper.getPhraseById(id);
             mTvContent.setText(phrase);
             mTvContentScroll.scrollTo(0, 0);
 
-            /*
-            if(mTvContent instanceof ScrollingTextView) {
+            if (mTvContent instanceof ScrollingTextView) {
                 ScrollingTextView mTvContentSV = (ScrollingTextView) mTvContent;
-                mTvContentSV.setStartHeight( mTvContentScroll.getHeight() );
+                mTvContentSV.setStartHeight(mTvContentScroll.getHeight());
             } else {
+
+                ScrollRunner scrollRunner = new ScrollRunner();
+
+                scrollRunner.run();
+
+                mTvContentScroll.post(scrollRunner);
+
+                /*
+
                 mTvContentScroll.fullScroll(ScrollView.FOCUS_DOWN);
                 mTvContentScroll.postDelayed(new Runnable() {
                     @Override
@@ -439,8 +466,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         mTvContentScroll.fullScroll(ScrollView.FOCUS_DOWN);
                     }
                 }, 100L);
+                */
             }
-            */
+
 
         }
     }
@@ -454,7 +482,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-    public void onClickBtnNext(View v){
+    public void onClickBtnNext(View v) {
         //final TextView controlsView = (TextView) findViewById(R.id.fullscreen_content);
         //controlsView.setText("weqwe qwe qweqe qwe qwe qweqw eqwe qwe qwe qweqwe qwe qwe ");
         fillFortuneContent();
@@ -464,5 +492,73 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         fillFortuneContent();
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Main Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
+    }
+
+
+    class ScrollRunner implements Runnable {
+
+        final long totalScrollTime = 200000;//Long.MAX_VALUE; //total scroll time. I think that 300 000 000 years is close enouth to infinity. if not enought you can restart timer in onFinish()
+        final int scrollPeriod = 25; // every 20 ms scoll will happened. smaller values for smoother
+        final int heightToScroll = 1;//mTvContent.getLineHeight();//20; // will be scrolled to 20 px every time. smaller values for smoother scrolling
+
+        int lastScrollY = 0;
+
+        ScrollRunner(){  }
+
+        @Override
+        public void run() {
+            new CountDownTimer(totalScrollTime, scrollPeriod) {
+                public void onTick(long millisUntilFinished) {
+                    //mTvContentScroll.scrollBy(0, heightToScroll);
+                    mTvContentScroll.smoothScrollBy(0, heightToScroll);
+                }
+
+                public void onFinish() {
+                    //you can add code for restarting timer here
+                }
+            }.start();
+            Log.v(TAG, "-- "+mTvContentScroll.getRootView().getBottom() +" getHeight()="+mTvContentScroll.getHeight()+" "+mTvContentScroll.getPaddingBottom());
+            if (lastScrollY == mTvContentScroll.getScrollY())
+                ;//mTvContentScroll.removeCallbacks(this);
+            else
+                lastScrollY = mTvContentScroll.getScrollY();
+        }
+
     }
 }
