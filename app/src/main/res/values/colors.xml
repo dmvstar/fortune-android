@@ -2,6 +2,7 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="transparent_50">#20000000</color>
+    <color name="transparent_10">#e0000000</color>
 
     <color name="DarkYellow">#FF00FF</color>
     <color name="Blue">#0000FF</color>

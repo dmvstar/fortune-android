@@ -52,20 +52,22 @@
         android:layout_marginBottom="60dp"
         >
 
+        <!-- TextView android:id="@+id/fullscreen_content" -->
+        <!--net.sf.dvstar.fortune.view.ScrollingTextView android:id="@+id/fullscreen_content" -->
         <TextView android:id="@+id/fullscreen_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:keepScreenOn="true"
-            android:textColor="#ffe2e50d"
-            android:textStyle="bold" android:textSize="30sp"
-            android:gravity="center"
-            android:text="@string/dummy_content"
-            android:layout_margin="30dp"
-            />
-    </ScrollView>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:keepScreenOn="true"
+        android:textColor="#ffe2e50d"
+        android:textStyle="bold" android:textSize="30sp"
+        android:gravity="center"
+        android:text="@string/dummy_content"
+        android:layout_margin="30dp"
+            android:background="#30000000" />
+</ScrollView>
 
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
+<!-- This FrameLayout insets its children based on system windows using
+     android:fitsSystemWindows. -->
     <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
