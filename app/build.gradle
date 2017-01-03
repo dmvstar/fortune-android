@@ -15,8 +15,8 @@ android {
 
 	applicationVariants.all { variant ->                              
 
-            	def manifestParser = new com.android.builder.core.DefaultManifestParser()
-		println manifestParser.getVersionName(android.sourceSets.main.manifest.srcFile)
+        //def manifestParser = new com.android.builder.core.DefaultManifestParser()
+		//println manifestParser.getVersionName(android.sourceSets.main.manifest.srcFile)
 
         	variant.outputs.each { output ->                              
             		output.outputFile = file("$project.buildDir/outputs/apk/fortune-android-1.0.15.apk")
@@ -36,7 +36,12 @@ android {
         abortOnError false
     }
 
-
+    /*
+    String getVersionName(manifestFile) {
+        def manifestParser = new DefaultManifestParser()
+        return manifestParser.getVersionName(manifestFile)
+    }
+    */
 }
 
 dependencies {
